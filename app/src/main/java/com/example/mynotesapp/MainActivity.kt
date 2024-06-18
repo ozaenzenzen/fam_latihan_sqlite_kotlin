@@ -7,6 +7,7 @@ import android.os.PersistableBundle
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mynotesapp.adapter.NoteAdapter
@@ -68,6 +69,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Set up the toolbar
+        setSupportActionBar(findViewById<Toolbar>(R.id.toolbar))
 
         supportActionBar?.title = "Notes"
 

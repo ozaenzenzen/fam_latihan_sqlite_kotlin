@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import com.example.mynotesapp.databinding.ActivityNoteAddUpdateBinding
 import com.example.mynotesapp.db.DatabaseContract
 import com.example.mynotesapp.db.DatabaseContract.NoteColumns.Companion.DATE
@@ -43,6 +44,8 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
         binding = ActivityNoteAddUpdateBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(findViewById<Toolbar>(R.id.toolbar))
 
         noteHelper = NoteHelper.getInstance(applicationContext)
         noteHelper.open()
