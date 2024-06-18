@@ -18,35 +18,6 @@ class NoteAdapter(private val onItemClickCallback: OnItemClickCallback) :
             this.listNotes.addAll(listNotes)
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteAdapter.NoteViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
-        return NoteViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: NoteAdapter.NoteViewHolder, position: Int) {
-        holder.bind(listNotes[position])
-    }
-
-    override fun getItemCount(): Int {
-        return this.listNotes.size
-    }
-
-    inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemNoteBinding.bind(itemView)
-        fun bind(note: Note) {
-            binding.tvItemTitle.text = note.title
-            binding.tvItemDate.text = note.date
-            binding.tvItemDescription.text = note.description
-            binding.cvItemNote.setOnClickListener {
-                onItemClickCallback.onItemClicked(note, adapterPosition)
-            }
-        }
-    }
-
-    interface OnItemClickCallback {
-        fun onItemClicked(selectedNote: Note?, position: Int)
-    }
-
     fun addItem(note: Note) {
         this.listNotes.add(note)
         notifyItemInserted(this.listNotes.size - 1)
@@ -63,4 +34,30 @@ class NoteAdapter(private val onItemClickCallback: OnItemClickCallback) :
         notifyItemRangeChanged(position, this.listNotes.size)
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
+        return NoteViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
+        holder.bind(listNotes[position])
+    }
+
+    override fun getItemCount(): Int = this.listNotes.size
+
+    inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = ItemNoteBinding.bind(itemView)
+        fun bind(note: Note) {
+            binding.tvItemTitle.text = note.title
+            binding.tvItemDate.text = note.date
+            binding.tvItemDescription.text = note.description
+            binding.cvItemNote.setOnClickListener {
+                onItemClickCallback.onItemClicked(note, adapterPosition)
+            }
+        }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(selectedNote: Note?, position: Int?)
+    }
 }

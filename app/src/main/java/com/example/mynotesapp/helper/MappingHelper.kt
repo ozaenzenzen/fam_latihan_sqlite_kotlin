@@ -5,9 +5,9 @@ import com.example.mynotesapp.db.DatabaseContract
 import com.example.mynotesapp.entity.Note
 
 object MappingHelper {
+
     fun mapCursorToArrayList(notesCursor: Cursor?): ArrayList<Note> {
         val notesList = ArrayList<Note>()
-
         notesCursor?.apply {
             while (moveToNext()) {
                 val id = getInt(getColumnIndexOrThrow(DatabaseContract.NoteColumns._ID))
@@ -18,7 +18,6 @@ object MappingHelper {
                 notesList.add(Note(id, title, description, date))
             }
         }
-
         return notesList
     }
 }
