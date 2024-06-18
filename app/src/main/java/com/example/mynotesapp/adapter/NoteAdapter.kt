@@ -32,7 +32,7 @@ class NoteAdapter(private val onItemClickCallback: OnItemClickCallback) :
     }
 
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding: ItemNoteBinding.bind(itemView)
+        private val binding = ItemNoteBinding.bind(itemView)
         fun bind(note: Note) {
             binding.tvItemTitle.text = note.title
             binding.tvItemDate.text = note.date
