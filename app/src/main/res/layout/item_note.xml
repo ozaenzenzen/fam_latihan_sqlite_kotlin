@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:gravity="start"
-                android:text="@string/note"
+                android:text="@string/date"
                 android:textSize="12sp" />
 
             <TextView
